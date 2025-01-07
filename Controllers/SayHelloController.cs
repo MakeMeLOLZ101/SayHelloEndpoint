@@ -7,9 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace SayHelloEndpoint.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class SayHelloController : ControllerBase
     {
-        
+        [HttpGet("{name}")]
+        public string SayHello(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return "Please provide a name!";
+            }
+
+            return $"Hello, {name}!";
+        }
     }
 }
